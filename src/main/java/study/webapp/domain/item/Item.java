@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import study.webapp.domain.Category;
 import study.webapp.domain.OrderItem;
+import study.webapp.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,5 +30,26 @@ public class Item {
     private int price;
 
     private int stockQuantity;
+
+    //==비즈니스 로직==//
+    /**
+     * Stock 증가
+     * @param quantity
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * Stock 감소
+     * @param quantity
+     */
+    public void removeStock(int quantity) {
+        var stockRemained = this.stockQuantity - quantity;
+        if (stockRemained < 0) {
+            throw new NotEnoughStockException("Need more stock");
+        }
+        this.stockQuantity = stockRemained;
+    }
 
 }
