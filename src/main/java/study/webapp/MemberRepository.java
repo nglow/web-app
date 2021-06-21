@@ -1,6 +1,7 @@
 package study.webapp;
 
 import org.springframework.stereotype.Repository;
+import study.webapp.domain.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
