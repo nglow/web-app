@@ -11,6 +11,9 @@ import study.webapp.domain.item.Item;
 import study.webapp.repository.ItemRepository;
 import study.webapp.repository.MemberRepository;
 import study.webapp.repository.OrderRepository;
+import study.webapp.repository.OrderSearch;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -58,7 +61,7 @@ public class OrderService {
     /**
      * 주문 검색
      */
-//    public List<Order> findOrders(OrderSearch orderSearch) {
-//        return orderRepository.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
 }

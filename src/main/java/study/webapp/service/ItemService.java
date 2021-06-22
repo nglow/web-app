@@ -3,6 +3,8 @@ package study.webapp.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import study.webapp.controller.BookForm;
+import study.webapp.domain.item.Book;
 import study.webapp.domain.item.Item;
 import study.webapp.repository.ItemRepository;
 
@@ -26,5 +28,15 @@ public class ItemService {
 
     public Item findOne(Long id) {
         return itemRepository.findOne(id);
+    }
+
+    public void updateItem(Long itemId, BookForm form) {
+
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity, String author, String isbn) {
+        var bookRetrieved = (Book) findOne(itemId);
+        bookRetrieved.update(name, price, stockQuantity, author, isbn);
     }
 }
