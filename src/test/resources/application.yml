@@ -10,7 +10,7 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        #        show_sql: sql
+#        show_sql: sql
         format_sql: true
 
 logging:

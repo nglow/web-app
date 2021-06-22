@@ -83,15 +83,4 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
     }
-
-
-    public List<Order> findAll(OrderSearch orderSearch) {
-        em.createQuery("select o from Order o join o.member m" +
-        " where o.status = :status" +
-        " and m.name like :name", Order.class)
-        .setParameter("status", orderSearch.getOrderStatus())
-        .setParameter("name", orderSearch.getMemberName())
-        .setMaxResults(1000) // 최대 1000건
-        .getResultList();
-    }
 }
